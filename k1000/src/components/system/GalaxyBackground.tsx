@@ -20,7 +20,7 @@ export default function GalaxyBackground() {
     <Points positions={stars} stride={3}>
       <pointsMaterial
         color="#ffffff"
-        size={0.09}
+        size={0.08}
         sizeAttenuation
         depthWrite={false}
       />
