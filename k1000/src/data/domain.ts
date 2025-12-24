@@ -4,37 +4,23 @@ export const domains = [
     title: "Training Program",
     yearOfFormation: 2022,
     overview:
-      "The K-1000 Training Program is a peer-to-peer learning initiative focused on skill development in both technical and non-technical domains.",
+      "The Training Program serves as the foundational learning pillar of K-1000, designed to upskill students through a structured, peer-driven learning ecosystem.",
     description:
-      "Students gain hands-on experience through workshops, real-world projects, and one-on-one mentoring. The program fosters collaboration, builds confidence, and equips students with practical knowledge for personal and professional growth.",
+      "The K-1000 Training Program focuses on equipping students with both technical and professional competencies required in real-world environments. Through curated learning tracks, interactive workshops, and mentorship-driven sessions, students are introduced to core concepts in programming, system design, communication, and teamwork. The program emphasizes experiential learning, where participants actively apply concepts through guided exercises and collaborative problem-solving. Over time, students develop confidence, discipline, and adaptability—skills essential for academic success, research, and industry readiness.",
     focusAreas: [
-      "Technical Skill Development",
-      "Soft Skills & Communication",
-      "Peer-to-Peer Mentorship",
-      "Hands-on Workshops",
+      "Core Programming & Technical Foundations",
+      "Communication, Presentation & Soft Skills",
+      "Peer-to-Peer Learning & Mentorship",
+      "Hands-on Workshops & Guided Practice",
     ],
     outcomes: [
-      "Industry-ready skillset",
-      "Stronger problem-solving ability",
-      "Improved collaboration and leadership",
+      "Strong technical and conceptual foundations",
+      "Improved communication and teamwork skills",
+      "Early exposure to problem-solving environments",
+      "Smooth transition into advanced K-1000 domains",
     ],
     baseColor: "#2a4fff",
     accentColor: "#6bbcff",
-    leadership: {
-      director: {
-        name: "Rishit Singh",
-        position: "Director",
-        branch: "",
-        image:
-          "https://res.cloudinary.com/vanxodus305/image/upload/v1754423645/K-1000/Rishit_Singh_m7b5vj.jpg",
-      },
-      deputyDirector: {
-        name: "To Be Announced",
-        position: "Deputy Director",
-        branch: "",
-        image: "",
-      },
-    },
   },
 
   {
@@ -42,37 +28,23 @@ export const domains = [
     title: "Research and Publications",
     yearOfFormation: 2022,
     overview:
-      "The Research and Publications domain supports students in academic research and scholarly publishing.",
+      "The Research and Publications domain nurtures a culture of inquiry, innovation, and academic excellence within K-1000.",
     description:
-      "From choosing research topics to submitting papers, students receive structured guidance from mentors, faculty, and alumni. The domain aims to promote a culture of innovation and academic excellence.",
+      "This domain supports students interested in academic research by guiding them through the complete research lifecycle—from identifying relevant problem statements to publishing their work in conferences and journals. Students receive mentorship in research methodology, literature review, experimentation, and academic writing. By collaborating with peers, seniors, and faculty mentors, participants gain exposure to scholarly practices and develop the discipline required for rigorous research. The domain aims to bridge the gap between undergraduate learning and formal academic research.",
     focusAreas: [
-      "Academic Research",
-      "Paper Writing",
-      "Conference Submissions",
-      "Journal Publications",
+      "Research Methodology & Problem Formulation",
+      "Literature Review & Analysis",
+      "Paper Writing & Academic Documentation",
+      "Conference & Journal Submissions",
     ],
     outcomes: [
-      "Published research papers",
-      "Improved research methodology",
-      "Exposure to academic ecosystems",
+      "Published or submitted research papers",
+      "Improved analytical and critical thinking",
+      "Familiarity with academic research standards",
+      "Preparation for higher studies and research careers",
     ],
     baseColor: "#1f7a3a",
     accentColor: "#7dffb3",
-    leadership: {
-      director: {
-        name: "Rishit Singh",
-        position: "Director",
-        branch: "",
-        image:
-          "https://res.cloudinary.com/vanxodus305/image/upload/v1754423645/K-1000/Rishit_Singh_m7b5vj.jpg",
-      },
-      deputyDirector: {
-        name: "To Be Announced",
-        position: "Deputy Director",
-        branch: "",
-        image: "",
-      },
-    },
   },
 
   {
@@ -80,37 +52,23 @@ export const domains = [
     title: "Project Wing",
     yearOfFormation: 2023,
     overview:
-      "The Project Wing enables students to work on real-world problems in a collaborative, team-driven environment.",
+      "The Project Wing is the execution-focused domain of K-1000, translating ideas into functional, real-world solutions.",
     description:
-      "This domain provides mentorship, technical resources, and recognition for impactful project work. Students showcase projects across platforms while building strong practical experience.",
+      "Project Wing enables students to work in multidisciplinary teams on practical projects addressing real-world challenges. Members collaborate across domains, applying technical knowledge, design thinking, and project management principles. The domain provides mentorship, access to resources, and structured timelines to ensure meaningful outcomes. Students are encouraged to document, showcase, and iterate on their work, fostering a product-oriented mindset and long-term learning.",
     focusAreas: [
       "Real-world Problem Solving",
-      "Product Development",
-      "Team-based Engineering",
-      "Project Showcasing",
+      "Product & Solution Development",
+      "Team-based Engineering & Collaboration",
+      "Project Documentation & Showcasing",
     ],
     outcomes: [
       "Portfolio-ready projects",
-      "Industry-aligned experience",
-      "Cross-domain collaboration",
+      "Hands-on experience with real constraints",
+      "Exposure to collaborative development workflows",
+      "Confidence in building and deploying solutions",
     ],
     baseColor: "#b45309",
     accentColor: "#ffd166",
-    leadership: {
-      director: {
-        name: "Rishit Singh",
-        position: "Director",
-        branch: "",
-        image:
-          "https://res.cloudinary.com/vanxodus305/image/upload/v1754423645/K-1000/Rishit_Singh_m7b5vj.jpg",
-      },
-      deputyDirector: {
-        name: "To Be Announced",
-        position: "Deputy Director",
-        branch: "",
-        image: "",
-      },
-    },
   },
 
   {
@@ -118,37 +76,23 @@ export const domains = [
     title: "Event Organization",
     yearOfFormation: 2022,
     overview:
-      "The Event Organization wing focuses on planning and executing technical and non-technical events throughout the year.",
+      "The Event Organization domain manages the planning, coordination, and execution of K-1000’s technical and community-driven events.",
     description:
-      "From hackathons and workshops to webinars and speaker sessions, this domain ensures smooth coordination and impactful experiences.",
+      "This domain is responsible for conceptualizing and delivering a wide range of events, including workshops, hackathons, seminars, and speaker sessions. Members gain experience in logistics, communication, sponsorship coordination, and audience engagement. The domain plays a crucial role in building K-1000’s public presence while providing students with leadership and organizational exposure through hands-on event management.",
     focusAreas: [
-      "Event Planning",
-      "Logistics & Coordination",
-      "Public Engagement",
-      "Speaker & Industry Outreach",
+      "Event Planning & Execution",
+      "Logistics & Operations Management",
+      "Public Relations & Outreach",
+      "Industry and Speaker Engagement",
     ],
     outcomes: [
-      "Successful large-scale events",
-      "Leadership and management skills",
-      "Community building",
+      "Successful large-scale academic and technical events",
+      "Strong leadership and coordination skills",
+      "Experience in managing real-world responsibilities",
+      "Enhanced visibility and community engagement",
     ],
     baseColor: "#7f1d1d",
     accentColor: "#ff6b6b",
-    leadership: {
-      director: {
-        name: "Rishit Singh",
-        position: "Director",
-        branch: "",
-        image:
-          "https://res.cloudinary.com/vanxodus305/image/upload/v1754423645/K-1000/Rishit_Singh_m7b5vj.jpg",
-      },
-      deputyDirector: {
-        name: "To Be Announced",
-        position: "Deputy Director",
-        branch: "",
-        image: "",
-      },
-    },
   },
 
   {
@@ -156,37 +100,23 @@ export const domains = [
     title: "Internship and Placement",
     yearOfFormation: 2023,
     overview:
-      "This domain assists students in securing internships and placements through structured preparation and industry exposure.",
+      "The Internship and Placement domain prepares students for professional careers by aligning academic learning with industry expectations.",
     description:
-      "It conducts resume reviews, mock interviews, and training sessions while bridging the gap between campus learning and industry expectations.",
+      "This domain focuses on career readiness through structured preparation programs, including resume reviews, mock interviews, and skill-mapping sessions. Students receive guidance on navigating recruitment processes, understanding industry roles, and building professional profiles. By leveraging peer learning and alumni insights, the domain helps students make informed career decisions and improve their chances of securing internships and placements.",
     focusAreas: [
-      "Resume Building",
-      "Mock Interviews",
-      "Industry Connections",
-      "Career Guidance",
+      "Resume & Profile Building",
+      "Mock Interviews & Evaluation",
+      "Industry Awareness & Role Mapping",
+      "Career Guidance & Mentorship",
     ],
     outcomes: [
-      "Internship conversions",
-      "Placement readiness",
-      "Stronger professional profiles",
+      "Improved internship and placement readiness",
+      "Stronger professional communication",
+      "Clear understanding of industry expectations",
+      "Higher confidence during recruitment processes",
     ],
     baseColor: "#5b21b6",
     accentColor: "#c084fc",
-    leadership: {
-      director: {
-        name: "Rishit Singh",
-        position: "Director",
-        branch: "",
-        image:
-          "https://res.cloudinary.com/vanxodus305/image/upload/v1754423645/K-1000/Rishit_Singh_m7b5vj.jpg",
-      },
-      deputyDirector: {
-        name: "To Be Announced",
-        position: "Deputy Director",
-        branch: "",
-        image: "",
-      },
-    },
   },
 
   {
@@ -194,36 +124,22 @@ export const domains = [
     title: "Higher Studies",
     yearOfFormation: 2023,
     overview:
-      "The Higher Studies domain supports students aspiring to pursue postgraduate education in India or abroad.",
+      "The Higher Studies domain supports students aspiring for postgraduate education and research opportunities in India and abroad.",
     description:
-      "Guidance is provided for entrance exams, university applications, SOP writing, and scholarships to help students make informed academic decisions.",
+      "This domain assists students throughout the higher studies preparation journey, including exam planning, university shortlisting, and application strategies. Guidance is provided for entrance exams, Statement of Purpose (SOP) writing, Letters of Recommendation (LORs), and scholarship opportunities. By offering structured timelines and mentorship, the domain helps students approach higher education decisions with clarity and confidence.",
     focusAreas: [
-      "Entrance Exam Preparation",
-      "University Shortlisting",
-      "SOP & LOR Guidance",
-      "Scholarships & Funding",
+      "Entrance Exam Preparation & Strategy",
+      "University Research & Shortlisting",
+      "SOP, LOR & Application Guidance",
+      "Scholarships & Funding Opportunities",
     ],
     outcomes: [
-      "Admissions to reputed universities",
-      "Clear academic planning",
-      "Stronger applications",
+      "Admissions to reputed institutions",
+      "Well-structured academic plans",
+      "Stronger postgraduate applications",
+      "Informed decision-making for higher education",
     ],
     baseColor: "#0f766e",
     accentColor: "#5eead4",
-    leadership: {
-      director: {
-        name: "Rishit Singh",
-        position: "Director",
-        branch: "",
-        image:
-          "https://res.cloudinary.com/vanxodus305/image/upload/v1754423645/K-1000/Rishit_Singh_m7b5vj.jpg",
-      },
-      deputyDirector: {
-        name: "To Be Announced",
-        position: "Deputy Director",
-        branch: "",
-        image: "",
-      },
-    },
   },
 ];
