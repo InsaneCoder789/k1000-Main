@@ -1,23 +1,17 @@
 "use client";
-
 import { useState } from "react";
+import BootTerminal from "@/components/boot/BootTerminal";
+import LogoCharge from "@/components/boot/LogoCharge";
 import SystemCanvas from "@/components/system/SystemCanvas";
-import SystemBoot from "@/components/ui/SystemBoot";
-import Footer from "@/components/footer/Footer";
 
-export default function Home() {
-  const [ready, setReady] = useState(false);
+export default function HomePage() {
+  const [phase, setPhase] = useState<"term"|"logo"|"app">("term");
 
   return (
-    <main className="relative min-h-screen bg-black text-white overflow-hidden">
-      {!ready && <SystemBoot onComplete={() => setReady(true)} />}
-
-      {ready && (
-        <>
-          <SystemCanvas />
-          <Footer />
-        </>
-      )}
-    </main>
+    <>
+      {phase === "term" && <BootTerminal onDone={() => setPhase("logo")} />}
+      {phase === "logo" && <LogoCharge onDone={() => setPhase("app")} />}
+      {phase === "app" && <SystemCanvas />}
+    </>
   );
 }

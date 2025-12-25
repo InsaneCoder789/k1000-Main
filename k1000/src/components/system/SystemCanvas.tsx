@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
@@ -13,13 +13,37 @@ import CameraRig from "./CameraRig";
 import DomainHoloPanel from "../ui/DomainHoloPanel";
 import { domains } from "../../data/domain";
 
-const ORBITS = [2.0, 2.6, 3.2, 3.9, 4.6, 5.4];
+const ORBITS = [2.4, 2.8, 3.2, 3.6, 4.0, 4.4];
 
 export default function SystemCanvas() {
   const [activeDomainKey, setActiveDomainKey] = useState<string | null>(null);
   const [focusPos, setFocusPos] = useState<THREE.Vector3 | null>(null);
+  const [showUI, setShowUI] = useState(false);
+  const [typedText, setTypedText] = useState("");
+
+  const targetText = "Train · Transform · Transcend";
 
   const activeDomain = domains.find(d => d.key === activeDomainKey) ?? null;
+
+  /* 🔥 Delay UI (Navbar + Tagline) */
+  useEffect(() => {
+    const timer = setTimeout(() => setShowUI(true), 1000);
+
+    /* ⌨️ Typing effect for tagline */
+    const textTimer = setTimeout(() => {
+      let idx = 0;
+      const typer = setInterval(() => {
+        setTypedText(targetText.slice(0, idx));
+        idx++;
+        if (idx > targetText.length) clearInterval(typer);
+      }, 70);
+    }, 1300);
+
+    return () => {
+      clearTimeout(timer);
+      clearTimeout(textTimer);
+    };
+  }, []);
 
   return (
     <div className="relative h-screen w-full bg-black overflow-hidden">
@@ -39,77 +63,80 @@ export default function SystemCanvas() {
         draggable={false}
       />
 
-      {/* ================= HUD NAVBAR (COMPACT) ================= */}
-      <div className="absolute top-4 left-1/2 -translate-x-1/2 z-30">
+      {/* 🔥 NAVBAR appears after fade */}
+      {showUI && (
         <div
           className="
-            relative flex items-center gap-8
-            px-8 py-2.5 rounded-full
-            backdrop-blur-2xl bg-white/[0.045]
-            border border-white/10
-            shadow-[0_0_70px_rgba(0,200,255,0.12)]
+            absolute top-4 left-1/2 -translate-x-1/2 z-30
+            animate-fade-in
           "
         >
-          {/* ENERGY GLOW */}
           <div
             className="
-              absolute inset-0 rounded-full pointer-events-none
-              bg-gradient-to-r from-cyan-400/10 via-transparent to-purple-400/10
-              blur-xl opacity-40
+              relative flex items-center gap-8
+              px-8 py-2.5 rounded-full
+              backdrop-blur-2xl bg-white/[0.045]
+              border border-white/10
+              shadow-[0_0_70px_rgba(0,200,255,0.12)]
             "
-          />
+          >
+            <div
+              className="
+                absolute inset-0 rounded-full pointer-events-none
+                bg-gradient-to-r from-cyan-400/10 via-transparent to-purple-400/10
+                blur-xl opacity-40
+              "
+            />
 
-          {/* NAV ITEMS */}
-          <nav className="relative flex items-center gap-8">
-            {[
-              "Home",
-              "About",
-              "Benefits",
-              "Branches",
-              "Departments",
-              "Apply",
-              "Contact",
-            ].map(label => (
-              <button
-                key={label}
-                className="
-                  group relative
-                  text-[11px] uppercase tracking-[0.26em]
-                  text-white/70
-                  transition-all duration-300
-                  hover:text-cyan-300
-                  active:scale-[0.96]
-                "
-              >
-                <span className="relative z-10">{label}</span>
-
-                {/* UNDERLINE */}
-                <span
+            <nav className="relative flex items-center gap-8">
+              {[
+                "Home",
+                "About",
+                "Benefits",
+                "Branches",
+                "Departments",
+                "Apply",
+                "Contact",
+              ].map(label => (
+                <button
+                  key={label}
                   className="
-                    absolute left-1/2 -bottom-2 h-[1px] w-0
-                    bg-cyan-400
+                    group relative
+                    text-[11px] uppercase tracking-[0.26em]
+                    text-white/70
                     transition-all duration-300
-                    group-hover:w-full
-                    group-hover:left-0
-                    opacity-70
+                    hover:text-cyan-300
+                    active:scale-[0.96]
                   "
-                />
+                >
+                  <span className="relative z-10">{label}</span>
 
-                {/* TOUCH GLOW */}
-                <span
-                  className="
-                    absolute inset-0 rounded-md
-                    bg-cyan-400/10
-                    opacity-0 blur-md
-                    transition-opacity duration-300
-                    group-hover:opacity-100
-                  "
-                />
-              </button>
-            ))}
-          </nav>
+                  <span
+                    className="
+                      absolute left-1/2 -bottom-2 h-[1px] w-0
+                      bg-cyan-400
+                      transition-all duration-300
+                      group-hover:w-full
+                      group-hover:left-0
+                      opacity-70
+                    "
+                  />
+
+                  <span
+                    className="
+                      absolute inset-0 rounded-md
+                      bg-cyan-400/10
+                      opacity-0 blur-md
+                      transition-opacity duration-300
+                      group-hover:opacity-100
+                    "
+                  />
+                </button>
+              ))}
+            </nav>
+          </div>
         </div>
-      </div>
+      )}
 
       {/* ================= 3D CANVAS ================= */}
       <Canvas
@@ -130,7 +157,6 @@ export default function SystemCanvas() {
           {ORBITS.map(radius => (
             <OrbitRing key={radius} radius={radius} />
           ))}
-
           {domains.map((domain, index) => (
             <DomainPlanet
               key={domain.key}
@@ -157,7 +183,7 @@ export default function SystemCanvas() {
         />
       </Canvas>
 
-      {/* ================= DOMAIN PANEL ================= */}
+      {/* DOMAIN PANEL */}
       {activeDomain && (
         <DomainHoloPanel
           domain={activeDomain}
@@ -168,17 +194,24 @@ export default function SystemCanvas() {
         />
       )}
 
-      {/* ================= TAGLINE ================= */}
-      <div
-        className="
-          absolute bottom-6 left-1/2 -translate-x-1/2 z-20
-          text-white/85 text-xl tracking-[0.35em]
-          font-[Orbitron]
-          drop-shadow-[0_0_18px_rgba(0,200,255,0.35)]
-        "
-      >
-        Train · Transform · Transcend
-      </div>
+      {/* 🔥 TYPEWRITER TAGLINE */}
+      {showUI && (
+        <div
+          className="
+            absolute bottom-6 left-1/2 -translate-x-1/2 z-20
+            text-white/85 text-xl tracking-[0.35em]
+            font-[Orbitron]
+            drop-shadow-[0_0_18px_rgba(0,200,255,0.35)]
+            whitespace-nowrap
+            animate-fade-in
+          "
+        >
+          {typedText}
+          {typedText.length < targetText.length && <span className="type-cursor">█</span>}
+
+
+        </div>
+      )}
     </div>
   );
 }

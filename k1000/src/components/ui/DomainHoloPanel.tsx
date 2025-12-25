@@ -12,6 +12,8 @@ type Domain = {
   title: string;
   overview: string;
   description: string;
+  focusarea: string;
+  outcomes: string;
   yearOfFormation: number;
   baseColor: string;
   accentColor: string;
@@ -173,6 +175,12 @@ export default function DomainHoloPanel({ domain, onClose }: Props) {
 
             <p className="text-white/70 leading-relaxed text-sm whitespace-pre-line mb-10">
               {domain.description}
+            </p>
+            <p className="text-white/70 leading-relaxed text-sm whitespace-pre-line mb-10">
+              {domain.focusarea}
+            </p>
+            <p className="text-white/70 leading-relaxed text-sm whitespace-pre-line mb-10">
+              {domain.outcomes}
             </p>
 
             {domain.applyLink && (
