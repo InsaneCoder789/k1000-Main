@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
+import Link from "next/link";
 
 import Core from "./Core";
 import DomainPlanet from "./DomainPlanet";
@@ -90,16 +91,18 @@ export default function SystemCanvas() {
 
             <nav className="relative flex items-center gap-8">
               {[
-                "Home",
-                "About",
-                "Benefits",
-                "Branches",
-                "Departments",
-                "Apply",
-                "Contact",
-              ].map(label => (
-                <button
-                  key={label}
+                { label: "Home", href: "/Sections/home" },
+                { label: "About", href: "/Sections/about" },
+                { label: "Benefits", href: "/Sections/benefits" },
+                { label: "Branches", href: "/Sections/branches" },
+                { label: "Departments", href: "/Sections/departments" },
+                {label: "Events", href: "/Sections/departments" },
+                { label: "Apply", href: "/Sections/apply" },
+                { label: "Contact", href: "/Sections/contact" },
+              ].map((item) => (
+                <Link
+                  key={item.label}
+                  href={item.href}
                   className="
                     group relative
                     text-[11px] uppercase tracking-[0.26em]
@@ -109,8 +112,9 @@ export default function SystemCanvas() {
                     active:scale-[0.96]
                   "
                 >
-                  <span className="relative z-10">{label}</span>
+                  <span className="relative z-10">{item.label}</span>
 
+                  {/* underline on hover */}
                   <span
                     className="
                       absolute left-1/2 -bottom-2 h-[1px] w-0
@@ -122,6 +126,7 @@ export default function SystemCanvas() {
                     "
                   />
 
+                  {/* glowing hover */}
                   <span
                     className="
                       absolute inset-0 rounded-md
@@ -131,7 +136,7 @@ export default function SystemCanvas() {
                       group-hover:opacity-100
                     "
                   />
-                </button>
+                </Link>
               ))}
             </nav>
           </div>
@@ -183,16 +188,23 @@ export default function SystemCanvas() {
         />
       </Canvas>
 
-      {/* DOMAIN PANEL */}
-      {activeDomain && (
-        <DomainHoloPanel
-          domain={activeDomain}
-          onClose={() => {
-            setActiveDomainKey(null);
-            setFocusPos(null);
-          }}
-        />
-      )}
+ {/* DOMAIN PANEL */}
+          {activeDomain && (
+            <DomainHoloPanel
+              key={activeDomain.key}
+              domain={activeDomain}
+              onClose={() => {
+                // 👇 reset state cleanly
+                setActiveDomainKey(null);
+                setFocusPos(null);
+
+                // 👇 check if the panel is opened by route (/about)
+                if (typeof window !== "undefined" && window.location.pathname !== "/") {
+                  window.history.back();
+                }
+              }}
+            />
+          )}
 
       {/* 🔥 TYPEWRITER TAGLINE */}
       {showUI && (

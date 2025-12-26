@@ -12,8 +12,8 @@ type Domain = {
   title: string;
   overview: string;
   description: string;
-  focusarea: string;
-  outcomes: string;
+  focusAreas?: string[];
+  outcomes: string[];
   yearOfFormation: number;
   baseColor: string;
   accentColor: string;
@@ -176,9 +176,23 @@ export default function DomainHoloPanel({ domain, onClose }: Props) {
             <p className="text-white/70 leading-relaxed text-sm whitespace-pre-line mb-10">
               {domain.description}
             </p>
-            <p className="text-white/70 leading-relaxed text-sm whitespace-pre-line mb-10">
-              {domain.focusarea}
-            </p>
+           {domain.focusAreas && (
+                <div className="mb-10">
+                  <h3 className="text-cyan-300 text-sm tracking-widest uppercase mb-2">Focus Areas</h3>
+                  <ul className="list-disc ml-6 text-white/70 space-y-1">
+                    {domain.focusAreas.map((f, i) => (
+                      <li key={i}>{f}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+            {domain.focusAreas && !domain.focusAreas && (
+              <p className="text-white/70 leading-relaxed text-sm whitespace-pre-line mb-10">
+                {domain.focusAreas}
+              </p>
+            )}
+
             <p className="text-white/70 leading-relaxed text-sm whitespace-pre-line mb-10">
               {domain.outcomes}
             </p>
