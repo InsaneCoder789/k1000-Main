@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
-import Link from "next/link";
 
 import Core from "./Core";
 import DomainPlanet from "./DomainPlanet";
@@ -12,25 +11,24 @@ import GalaxyBackground from "./GalaxyBackground";
 import OrbitRing from "./OrbitRing";
 import CameraRig from "./CameraRig";
 import DomainHoloPanel from "../ui/DomainHoloPanel";
+import GlobalHoloPanel from "../ui/GlobalHoloPanel"; // ⭐ ADDED
 import { domains } from "../../data/domain";
 
 const ORBITS = [2.4, 2.8, 3.2, 3.6, 4.0, 4.4];
 
 export default function SystemCanvas() {
   const [activeDomainKey, setActiveDomainKey] = useState<string | null>(null);
+  const [openPanel, setOpenPanel] = useState<string | null>(null); // ⭐ ADDED
   const [focusPos, setFocusPos] = useState<THREE.Vector3 | null>(null);
   const [showUI, setShowUI] = useState(false);
   const [typedText, setTypedText] = useState("");
 
   const targetText = "Train · Transform · Transcend";
-
   const activeDomain = domains.find(d => d.key === activeDomainKey) ?? null;
 
-  /* 🔥 Delay UI (Navbar + Tagline) */
+  /* 🔥 Delay UI + Typewriter */
   useEffect(() => {
     const timer = setTimeout(() => setShowUI(true), 1000);
-
-    /* ⌨️ Typing effect for tagline */
     const textTimer = setTimeout(() => {
       let idx = 0;
       const typer = setInterval(() => {
@@ -49,107 +47,48 @@ export default function SystemCanvas() {
   return (
     <div className="relative h-screen w-full bg-black overflow-hidden">
 
-      {/* CORNER LOGOS */}
-      <img
-        src="/k1000-logo.png"
-        alt="K-1000"
-        className="absolute top-4 left-4 h-12 z-20 select-none"
-        draggable={false}
-      />
+      {/* 🌌 CORNER LOGOS */}
+      <img src="/k1000-logo.png" className="absolute top-4 left-4 h-12 z-20 select-none" />
+      <img src="/kiit-logo.png" className="absolute top-4 right-4 h-14 z-20 select-none" />
 
-      <img
-        src="/kiit-logo.png"
-        alt="KIIT"
-        className="absolute top-4 right-4 h-14 z-20 select-none"
-        draggable={false}
-      />
-
-      {/* 🔥 NAVBAR appears after fade */}
+      {/* 🔥 NAVBAR */}
       {showUI && (
-        <div
-          className="
-            absolute top-4 left-1/2 -translate-x-1/2 z-30
-            animate-fade-in
-          "
-        >
-          <div
-            className="
-              relative flex items-center gap-8
-              px-8 py-2.5 rounded-full
-              backdrop-blur-2xl bg-white/[0.045]
-              border border-white/10
-              shadow-[0_0_70px_rgba(0,200,255,0.12)]
-            "
-          >
-            <div
-              className="
-                absolute inset-0 rounded-full pointer-events-none
-                bg-gradient-to-r from-cyan-400/10 via-transparent to-purple-400/10
-                blur-xl opacity-40
-              "
-            />
+        <div className="absolute top-4 left-1/2 -translate-x-1/2 z-30 animate-fade-in">
+          <div className="relative flex items-center gap-8 px-8 py-2.5 rounded-full
+                          backdrop-blur-2xl bg-white/[0.045] border border-white/10
+                          shadow-[0_0_70px_rgba(0,200,255,0.12)]">
+
+            <div className="absolute inset-0 rounded-full pointer-events-none
+                            bg-gradient-to-r from-cyan-400/10 via-transparent to-purple-400/10
+                            blur-xl opacity-40" />
 
             <nav className="relative flex items-center gap-8">
               {[
-                { label: "Home", href: "/Sections/home" },
-                { label: "About", href: "/Sections/about" },
-                { label: "Benefits", href: "/Sections/benefits" },
-                { label: "Branches", href: "/Sections/branches" },
-                { label: "Departments", href: "/Sections/departments" },
-                {label: "Events", href: "/Sections/departments" },
-                { label: "Apply", href: "/Sections/apply" },
-                { label: "Contact", href: "/Sections/contact" },
-              ].map((item) => (
-                <Link
-                  key={item.label}
-                  href={item.href}
-                  className="
-                    group relative
-                    text-[11px] uppercase tracking-[0.26em]
-                    text-white/70
-                    transition-all duration-300
-                    hover:text-cyan-300
-                    active:scale-[0.96]
-                  "
+                "Home","About","Benefits","Branches",
+                "Departments","Events","Apply","Contact"
+              ].map(label => (
+                <button
+                  key={label}
+                  onClick={() => setOpenPanel(label.toLowerCase())} // ⭐ OPEN PANEL
+                  className="group relative text-[11px] uppercase tracking-[0.26em]
+                            text-white/70 transition-all duration-300 hover:text-cyan-300 active:scale-95"
                 >
-                  <span className="relative z-10">{item.label}</span>
+                  <span className="relative z-10">{label}</span>
 
-                  {/* underline on hover */}
-                  <span
-                    className="
-                      absolute left-1/2 -bottom-2 h-[1px] w-0
-                      bg-cyan-400
-                      transition-all duration-300
-                      group-hover:w-full
-                      group-hover:left-0
-                      opacity-70
-                    "
-                  />
-
-                  {/* glowing hover */}
-                  <span
-                    className="
-                      absolute inset-0 rounded-md
-                      bg-cyan-400/10
-                      opacity-0 blur-md
-                      transition-opacity duration-300
-                      group-hover:opacity-100
-                    "
-                  />
-                </Link>
+                  <span className="absolute left-1/2 -bottom-2 h-[1px] w-0 bg-cyan-400
+                                   transition-all duration-300 group-hover:w-full group-hover:left-0 opacity-70"/>
+                  <span className="absolute inset-0 rounded-md bg-cyan-400/10 opacity-0 blur-md
+                                   transition-opacity duration-300 group-hover:opacity-100"/>
+                </button>
               ))}
             </nav>
           </div>
         </div>
       )}
 
-      {/* ================= 3D CANVAS ================= */}
-      <Canvas
-        camera={{ position: [0, 4.5, 9], fov: 50 }}
-        dpr={[1, 1.5]}
-      >
+      {/* 🪐 3D CANVAS */}
+      <Canvas camera={{ position: [0, 4.5, 9], fov: 50 }} dpr={[1, 1.5]}>
         <GalaxyBackground />
-
         <ambientLight intensity={0.45} />
         <pointLight position={[0, 0, 0]} intensity={7} />
         <directionalLight position={[6, 6, -6]} intensity={0.8} />
@@ -159,69 +98,52 @@ export default function SystemCanvas() {
         <group rotation={[0.35, 0.25, 0]}>
           <Core onToggle={() => {}} />
 
-          {ORBITS.map(radius => (
-            <OrbitRing key={radius} radius={radius} />
-          ))}
+          {ORBITS.map(r => <OrbitRing key={r} radius={r} />)}
+
           {domains.map((domain, index) => (
             <DomainPlanet
               key={domain.key}
               name={domain.key}
               radius={ORBITS[index]}
-              size={0.3}
+              size={0.33}
               speed={0.25 + index * 0.03}
-              baseColor={domain.baseColor ?? "#2a4fff"}
-              accentColor={domain.accentColor ?? "#6bbcff"}
-              onClick={(key) => {
-                setActiveDomainKey(key);
-                setFocusPos(null);
-              }}
+              baseColor={domain.baseColor}
+              accentColor={domain.accentColor}
+              onClick={() => setActiveDomainKey(domain.key)}
             />
           ))}
         </group>
 
-        <OrbitControls
-          enableZoom={false}
-          enablePan={false}
-          minPolarAngle={Math.PI / 3}
-          maxPolarAngle={Math.PI / 2}
-          rotateSpeed={0.5}
-        />
+        <OrbitControls enableZoom={false} enablePan={false} rotateSpeed={0.5}
+                       minPolarAngle={Math.PI / 3} maxPolarAngle={Math.PI / 2}/>
       </Canvas>
 
- {/* DOMAIN PANEL */}
-          {activeDomain && (
-            <DomainHoloPanel
-              key={activeDomain.key}
-              domain={activeDomain}
-              onClose={() => {
-                // 👇 reset state cleanly
-                setActiveDomainKey(null);
-                setFocusPos(null);
+      {/* 🛰️ DOMAIN PANEL */}
+      {activeDomain && (
+        <DomainHoloPanel
+          domain={activeDomain}
+          onClose={() => {
+            setActiveDomainKey(null);
+            setFocusPos(null);
+          }}
+        />
+      )}
 
-                // 👇 check if the panel is opened by route (/about)
-                if (typeof window !== "undefined" && window.location.pathname !== "/") {
-                  window.history.back();
-                }
-              }}
-            />
-          )}
+      {/* 🧊 GLOBAL PANEL FOR NAV PAGES */}
+      {openPanel && (
+        <GlobalHoloPanel
+          page={openPanel}
+          onClose={() => setOpenPanel(null)}
+        />
+      )}
 
-      {/* 🔥 TYPEWRITER TAGLINE */}
+      {/* ✍️ TAGLINE */}
       {showUI && (
-        <div
-          className="
-            absolute bottom-6 left-1/2 -translate-x-1/2 z-20
-            text-white/85 text-xl tracking-[0.35em]
-            font-[Orbitron]
-            drop-shadow-[0_0_18px_rgba(0,200,255,0.35)]
-            whitespace-nowrap
-            animate-fade-in
-          "
-        >
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20
+                        text-white/85 text-xl tracking-[0.35em] font-[Orbitron]
+                        drop-shadow-[0_0_18px_rgba(0,200,255,0.35)] whitespace-nowrap animate-fade-in">
           {typedText}
-          {typedText.length < targetText.length && <span className="type-cursor">█</span>}
-
-
+          {typedText.length < targetText.length && <span className="text-cyan-400">█</span>}
         </div>
       )}
     </div>

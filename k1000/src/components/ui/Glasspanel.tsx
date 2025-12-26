@@ -1,38 +1,33 @@
 "use client";
-import { motion } from "framer-motion";
 
-export default function GlassPanel({
-  children,
-  accent = "#00eaff",
-  width = "85vw",
-}: {
+type Props = {
   children: React.ReactNode;
   accent?: string;
   width?: string;
-}) {
+  className?: string; // ⭐ ADDED
+};
+
+export default function GlassPanel({
+  children,
+  accent = "#22e2ff",
+  width = "80vw",
+  className = "",
+}: Props) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.9 }}
-      className="
-        relative p-10 rounded-3xl mx-auto
-        bg-white/10 backdrop-blur-xl border border-white/20
-        shadow-[0_0_80px_rgba(0,200,255,0.2)]
-        overflow-hidden
-      "
+    <div
+      className={`
+        relative rounded-3xl p-10 border backdrop-blur-xl
+        bg-white/5 border-white/10
+        shadow-[0_0_50px_rgba(34,226,255,0.2)]
+        ${className}
+      `}
       style={{
         width,
         borderColor: accent,
-        boxShadow: `0 0 120px ${accent}33`,
+        boxShadow: `0 0 120px ${accent}22`,
       }}
     >
-      <img
-        src="/k1000-small.png"
-        className="absolute inset-0 m-auto w-[420px] opacity-[0.04] pointer-events-none"
-      />
-      <div className="relative z-10">{children}</div>
-    </motion.div>
+      {children}
+    </div>
   );
 }
