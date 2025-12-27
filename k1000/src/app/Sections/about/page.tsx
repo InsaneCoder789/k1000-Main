@@ -1,7 +1,13 @@
+// 📌 src/app/Sections/about/page.tsx
+"use client";
+
+import AboutSection from "./AboutSection";
+import About from "./about";
+
 export default function AboutPage() {
   return (
-    <div className="text-white p-10">
-      <h1>About Page</h1>
+    <div className="w-full overflow-x-hidden">
+      <About />
     </div>
   );
 }

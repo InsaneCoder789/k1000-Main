@@ -46,14 +46,16 @@ export default function GlobalHoloPanel({ page, onClose }: Props) {
                    overflow-hidden"
       >
         {/* CLOSE BUTTON */}
-        <button
-          onClick={onClose}
-          className="absolute top-4 right-4 w-12 h-12 rounded-full
-                     bg-white/10 hover:bg-white/20 transition
-                     flex items-center justify-center"
-        >
-          <X className="text-white" />
-        </button>
+          <button
+    onClick={onClose}
+    className="fixed top-6 right-8 z-[300]
+    h-10 w-10 rounded-full
+    bg-black/60 backdrop-blur-xl border border-white/20
+    hover:bg-white/20 transition
+    flex items-center justify-center"
+  >
+    <X className="text-white" size={22} strokeWidth={2.5} />
+  </button>
 
         {/* LOAD PAGE HERE */}
         <div className="w-full h-full overflow-y-auto p-10">
