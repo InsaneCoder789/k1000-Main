@@ -1,7 +1,6 @@
 // 📌 src/app/Sections/about/page.tsx
 "use client";
 
-import AboutSection from "./AboutSection";
 import About from "./about";
 
 export default function AboutPage() {
