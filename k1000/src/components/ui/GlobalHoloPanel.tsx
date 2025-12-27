@@ -9,7 +9,7 @@ type Props = {
   onClose: () => void;
 };
 
-/** 🔥 Map nav names -> actual pages */
+/** 🔥 Mapping paths to the dynamic imports */
 const pageMap: Record<string, any> = {
   home: dynamic(() => import("@/app/Sections/home/page")),
   about: dynamic(() => import("@/app/Sections/about/page")),
@@ -28,40 +28,48 @@ export default function GlobalHoloPanel({ page, onClose }: Props) {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="absolute inset-0 z-[99] pointer-events-auto"
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-[100] flex items-center justify-center pointer-events-auto"
     >
-      {/* DARK BACKDROP */}
-      <div className="absolute inset-0 bg-black/70 backdrop-blur-xl" />
+      {/* 1. DARK BACKDROP */}
+      <div className="absolute inset-0 bg-black/80 backdrop-blur-md" onClick={onClose} />
 
-      {/* FULL SCREEN GLASS PANEL */}
+      {/* 2. MAIN CONTAINER - Increased Width/Height to 98% for immersive feel */}
       <motion.div
-        initial={{ scale: 0.97, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        exit={{ opacity: 0, scale: 0.95 }}
-        transition={{ type: "spring", damping: 20 }}
-        className="absolute inset-0 m-auto w-[95vw] h-[92vh]
-                   bg-white/[0.05] border border-white/20
-                   rounded-3xl backdrop-blur-2xl
-                   shadow-[0_0_120px_rgba(0,200,255,0.25)]
-                   overflow-hidden"
+        initial={{ scale: 0.98, opacity: 0, y: 10 }}
+        animate={{ scale: 1, opacity: 1, y: 0 }}
+        exit={{ scale: 0.98, opacity: 0, y: 10 }}
+        className="relative w-[98vw] h-[96vh] bg-[#050505]/60 border border-[#00f7ff]/20 
+                   rounded-[40px] shadow-[0_0_100px_rgba(0,247,255,0.1)] overflow-hidden"
       >
-        {/* CLOSE BUTTON */}
-          <button
-    onClick={onClose}
-    className="fixed top-6 right-8 z-[300]
-    h-10 w-10 rounded-full
-    bg-black/60 backdrop-blur-xl border border-white/20
-    hover:bg-white/20 transition
-    flex items-center justify-center"
-  >
-    <X className="text-white" size={22} strokeWidth={2.5} />
-  </button>
-
-        {/* LOAD PAGE HERE */}
-        <div className="w-full h-full overflow-y-auto p-10">
+        {/* PAGE CONTENT AREA */}
+        <div className="w-full h-full overflow-y-auto scrollbar-hide p-8 md:p-16 pb-32">
           {PageComponent ? <PageComponent /> : (
-            <p className="text-white/60">⚠️ Page not found.</p>
+            <div className="h-full flex items-center justify-center">
+                <p className="text-[#00f7ff] tracking-widest animate-pulse font-mono">ERROR: MODULE_NOT_FOUND</p>
+            </div>
           )}
+        </div>
+
+        {/* 3. FLOATING CLOSE BUTTON (At the bottom edge) */}
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-[310]">
+          <motion.button
+            onClick={onClose}
+            whileHover={{ 
+              scale: 1.05, 
+              backgroundColor: "rgba(0, 247, 255, 0.15)",
+              borderColor: "#00f7ff" 
+            }}
+            whileTap={{ scale: 0.95 }}
+            className="flex items-center gap-3 px-10 py-3 rounded-full border border-[#00f7ff]/40 
+                       bg-black/80 backdrop-blur-xl shadow-[0_0_30px_rgba(0,247,255,0.3)] 
+                       transition-all group pointer-events-auto"
+          >
+            <X className="w-4 h-4 text-[#00f7ff] group-hover:rotate-90 transition-transform duration-300" />
+            <span className="text-[11px] uppercase tracking-[0.4em] text-[#00f7ff] font-black">
+              Close
+            </span>
+          </motion.button>
         </div>
       </motion.div>
     </motion.div>
