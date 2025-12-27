@@ -108,19 +108,19 @@ export default function SystemCanvas() {
          <div className="absolute top-[54%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center z-20">
            <motion.div initial={{ opacity: 1 }} whileHover={{ scale: 1.02 }} className="pointer-events-auto transition-all duration-500">
                <button onClick={() => setOpenPanel("home")}>
-                 <div className="relative w-[280px] h-[450px] bg-black border-2 border-[#00f7ff]/50 rounded-[45px] flex items-center justify-center shadow-[0_0_90px_rgba(0,247,255,0.18)] overflow-visible">
-                     <div className="absolute inset-5 border border-[#00f7ff]/20 rounded-[35px]" />
+                 <div className="relative w-[280px] h-[450px] bg-black border-2 border-[#FFFFFF]/80 rounded-[45px] flex items-center justify-center shadow-[0_0_90px_rgba(0,247,255,0.18)] overflow-visible">
+                     <div className="absolute inset-5 border border-[#FFFFFF]/30 rounded-[35px]" />
                      <div className="flex flex-col items-center justify-center z-10 w-full h-full">
-                       <img src="/k1000-small.png" className="w-32 h-auto drop-shadow-[0_0_20px_#00f7ff]" />
-                       <div className="mt-6 text-[11px] tracking-[0.6em] text-[#00f7ff] font-black uppercase">VERS.2026</div>
+                       <img src="/k1000-small.png" className="w-32 h-auto drop-shadow-[0_0_20px_#FFFFFF]" />
+                       <div className="mt-6 text-[13px] tracking-[0.6em] text-[#00f7ff] font-black uppercase">VERS.2026</div>
                      </div>
 
                      {/* Physical Pins */}
                      <div className="absolute -left-3.5 top-[25%] bottom-[25%] flex flex-col justify-between py-1.5">
-                       {[...Array(10)].map((_,i)=><div key={i} className="w-7 h-[2.5px] bg-[#00f7ff] shadow-[0_0_8px_#00f7ff]" />)}
+                       {[...Array(10)].map((_,i)=><div key={i} className="w-7 h-[2.5px] bg-[#FFFFFF] shadow-[0_0_40px_#00f7ff]" />)}
                      </div>
                      <div className="absolute -right-3.5 top-[25%] bottom-[25%] flex flex-col justify-between py-1.5">
-                       {[...Array(10)].map((_,i)=><div key={i} className="w-7 h-[2.5px] bg-[#00f7ff] shadow-[0_0_8px_#00f7ff]" />)}
+                       {[...Array(10)].map((_,i)=><div key={i} className="w-7 h-[2.5px] bg-[#FFFFFF] shadow-[0_0_40px_#00f7ff]" />)}
                      </div>
                  </div>
                </button>
@@ -133,7 +133,7 @@ export default function SystemCanvas() {
          </div>
 
          {/* DOMAIN BUTTONS */}
-         <div className="absolute inset-0 z-30">
+         <div className="absolute inset-0 z-80">
            {[...LEFT_NODES, ...RIGHT_NODES].map((node) => (
                <NodeButton
                  key={node.key}
@@ -172,7 +172,7 @@ export default function SystemCanvas() {
       </AnimatePresence>
 
      <footer className="absolute bottom-8 w-full px-16 flex justify-between items-end opacity-60">
-       <div className="text-[11px] text-[#00f7ff] font-mono tracking-widest">{typed}</div>
+       <div className="text-[11px] text-[#FFFFFF] font-mono tracking-widest">{typed}</div>
        <div className="text-[9px] text-white/40 text-right leading-relaxed uppercase font-black">
            System_Status: Online <br/>
            Core_Interface: Active_Window
@@ -190,7 +190,7 @@ function PulseTrace({ item, isLeft, isActive }: any) {
    return (
      <>
        <motion.path
-         d={path} fill="none" stroke="#00f7ff" strokeWidth="0.2"
+         d={path} fill="none" stroke="#FFFFFF" strokeWidth="0.2"
          opacity={isActive ? 1 : 0.4}
          markerEnd={isLeft ? "url(#arrow-left)" : "url(#arrow-right)"}
        />
