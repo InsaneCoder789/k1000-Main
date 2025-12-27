@@ -11,9 +11,9 @@ type Props = {
 
 /** 🔥 Mapping paths to the dynamic imports */
 const pageMap: Record<string, any> = {
-  home: dynamic(() => import("@/app/Sections/home/page")),
+  home: dynamic(() => import("@/app/Sections/home/homepage")),
   about: dynamic(() => import("@/app/Sections/about/page")),
-  benefits: dynamic(() => import("@/app/Sections/benefits/page")),
+  benefits: dynamic(() => import("@/app/Sections/benefits/BenefitsSection")),
   branches: dynamic(() => import("@/app/Sections/branches/page")),
   departments: dynamic(() => import("@/app/Sections/departments/page")),
   events: dynamic(() => import("@/app/Sections/events/page")),
