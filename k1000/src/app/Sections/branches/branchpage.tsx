@@ -7,6 +7,8 @@ const images = [
   "https://cdn.prod.website-files.com/67aa2520eb413205a7dac909/67aa32340b3a8697b5760399_KIIT-Campus-Front-Library-1200x416.jpg",
 ];
 
+const conthrax = "font-['Conthrax',_sans-serif]";
+
 const branches = [
   {
     title: "Training Program",
@@ -48,7 +50,7 @@ const branches = [
 
 export default function BranchesPage() {
   return (
-    <div className="w-full min-h-screen text-white flex flex-col items-center space-y-32 py-10 px-6 font-sans">
+    <div className="w-full min-h-screen text-white flex flex-col items-center space-y-32 py-10 px-6 font-sans bg-black">
       
       {/* ─── HERO SECTION ─── */}
       <section className="relative w-full max-w-7xl h-[50vh] rounded-[40px] overflow-hidden border border-cyan-500/20 shadow-[0_0_50px_rgba(0,247,255,0.1)]">
@@ -63,7 +65,7 @@ export default function BranchesPage() {
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-5xl md:text-7xl font-[Orbitron] tracking-[0.2em] text-white uppercase"
+            className={`${conthrax} text-5xl md:text-7xl tracking-[0.2em] text-white uppercase`}
           >
             Our <span className="text-cyan-400 drop-shadow-[0_0_15px_#00f7ff]">Branches</span>
           </motion.h1>
@@ -97,11 +99,11 @@ export default function BranchesPage() {
               className="group relative p-10 rounded-[45px] bg-white/[0.02] border border-white/10 hover:border-cyan-500/40 transition-all duration-500 flex flex-col h-full shadow-2xl overflow-hidden"
             >
               {/* Top Unit Tag */}
-              <span className="text-[10px] font-[Orbitron] text-cyan-500/60 tracking-[0.3em] uppercase mb-6 block">
+              <span className={`${conthrax} text-[9px] text-cyan-500/60 tracking-[0.3em] uppercase mb-6 block`}>
                 {branch.tag}
               </span>
 
-              <h3 className="text-2xl font-[Orbitron] text-white mb-6 group-hover:text-cyan-400 transition-colors">
+              <h3 className={`${conthrax} text-2xl text-white mb-6 group-hover:text-cyan-400 transition-colors tracking-tight`}>
                 {branch.title}
               </h3>
 
@@ -111,7 +113,7 @@ export default function BranchesPage() {
 
               {/* Bottom Focus Detail */}
               <div className="pt-6 border-t border-white/5">
-                <p className="text-[11px] font-[Orbitron] text-white/30 group-hover:text-white/60 transition-colors tracking-tighter">
+                <p className={`${conthrax} text-[9px] text-white/30 group-hover:text-white/60 transition-colors tracking-widest`}>
                   {branch.focus}
                 </p>
               </div>
@@ -126,7 +128,7 @@ export default function BranchesPage() {
       {/* ─── CALL TO ACTION ─── */}
       <section className="w-full max-w-5xl flex flex-col items-center text-center space-y-10">
         <div className="w-full h-px bg-gradient-to-r from-transparent via-cyan-500/30 to-transparent" />
-        <h2 className="text-2xl md:text-3xl font-[Orbitron] tracking-[0.2em]">
+        <h2 className={`${conthrax} text-2xl md:text-3xl tracking-[0.2em] uppercase`}>
           WANT TO LEARN <span className="text-cyan-400">MORE?</span>
         </h2>
         <motion.a
@@ -138,7 +140,7 @@ export default function BranchesPage() {
           whileTap={{ scale: 0.95 }}
         >
           <div className="absolute inset-0 border border-cyan-500/50 rounded-full group-hover:border-cyan-400 transition-all shadow-[0_0_15px_rgba(0,247,255,0.2)]" />
-          <span className="relative font-[Orbitron] text-xs tracking-[0.4em] text-cyan-400 group-hover:text-white transition-colors">
+          <span className={`${conthrax} relative text-[10px] tracking-[0.4em] text-cyan-400 group-hover:text-white transition-colors`}>
             SYSTEM PORTAL
           </span>
         </motion.a>
@@ -146,7 +148,7 @@ export default function BranchesPage() {
 
       {/* FOOTER SYSTEM STATUS */}
       <div className="pb-20">
-         <p className="text-[10px] font-[Orbitron] tracking-[1.5em] text-white/10 uppercase">
+         <p className={`${conthrax} text-[10px] tracking-[1.2em] text-white/10 uppercase`}>
            Integrated Division Protocol • K-1000
          </p>
       </div>

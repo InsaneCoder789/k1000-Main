@@ -16,8 +16,8 @@ const pageMap: Record<string, any> = {
   branches: dynamic(() => import("@/app/Sections/branches/branchpage")),
   departments: dynamic(() => import("@/app/Sections/departments/departmentpage")),
   events: dynamic(() => import("@/app/Sections/events/page")),
-  apply: dynamic(() => import("@/app/Sections/apply/page")),
-  contact: dynamic(() => import("@/app/Sections/contact/page")),
+  apply: dynamic(() => import("@/app/Sections/apply/applypage")),
+  contact: dynamic(() => import("@/app/Sections/contact/contactpage")),
 };
 
 export default function GlobalHoloPanel({ page, onClose }: Props) {

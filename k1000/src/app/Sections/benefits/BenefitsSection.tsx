@@ -8,6 +8,8 @@ const images = [
   "https://cdn.prod.website-files.com/67aa2520eb413205a7dac909/67aa32340b3a8697b5760399_KIIT-Campus-Front-Library-1200x416.jpg",
 ];
 
+const conthrax = "font-['Conthrax',_sans-serif]";
+
 const benefits = [
   {
     title: "Early Research Exposure",
@@ -58,7 +60,7 @@ const benefits = [
 
 export default function BenefitsPage() {
   return (
-    <div className="w-full min-h-screen text-white flex flex-col items-center space-y-32 py-10 px-6 font-sans">
+    <div className="w-full min-h-screen text-white flex flex-col items-center space-y-32 py-10 px-6 font-sans bg-black">
       
       {/* ─── HERO SECTION ─── */}
       <section className="relative w-full max-w-7xl h-[55vh] rounded-[40px] overflow-hidden border border-cyan-500/20 shadow-2xl">
@@ -73,7 +75,7 @@ export default function BenefitsPage() {
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-5xl md:text-7xl font-[Orbitron] tracking-[0.2em] text-white"
+            className={`${conthrax} text-5xl md:text-7xl tracking-[0.2em] text-white uppercase`}
           >
             JOIN <span className="text-cyan-400 drop-shadow-[0_0_15px_#00f7ff]">K-1000</span>
           </motion.h1>
@@ -90,8 +92,8 @@ export default function BenefitsPage() {
 
       {/* ─── DESCRIPTION BLOCK ─── */}
       <section className="w-full max-w-4xl text-center space-y-8">
-        <h2 className="text-3xl md:text-4xl font-[Orbitron] text-white uppercase tracking-tighter">
-          The <span className="text-cyan-400 text-shadow-glow">Ecosystem</span>
+        <h2 className={`${conthrax} text-3xl md:text-4xl text-white uppercase tracking-tighter`}>
+          The <span className="text-cyan-400">Ecosystem</span>
         </h2>
         <p className="text-xl text-white/70 leading-relaxed font-light">
           The K-1000 initiative is more than a program; it's a launchpad. 
@@ -115,7 +117,7 @@ export default function BenefitsPage() {
               {/* Decorative Corner Glow */}
               <div className="absolute -top-10 -right-10 w-24 h-24 bg-cyan-500/10 blur-3xl group-hover:bg-cyan-500/20 transition-all" />
               
-              <h3 className="text-xl font-[Orbitron] text-white mb-3 tracking-wide group-hover:text-cyan-400 transition-colors">
+              <h3 className={`${conthrax} text-xl text-white mb-3 tracking-wide group-hover:text-cyan-400 transition-colors`}>
                 {benefit.title}
               </h3>
               
@@ -125,7 +127,7 @@ export default function BenefitsPage() {
 
               {/* Extra Detail Badge */}
               <div className="mt-auto pt-6 border-t border-white/10 w-full">
-                <p className="text-[10px] font-[Orbitron] text-cyan-500/80 uppercase tracking-widest">
+                <p className={`${conthrax} text-[9px] text-cyan-500/80 uppercase tracking-widest`}>
                   {benefit.detail}
                 </p>
               </div>
@@ -142,14 +144,14 @@ export default function BenefitsPage() {
           className="size-full object-cover brightness-50 group-hover:scale-105 transition-transform duration-[2.5s]"
         />
         <div className="absolute inset-0 flex flex-col items-center justify-center space-y-8 bg-black/40 backdrop-blur-[1px]">
-          <h2 className="text-2xl md:text-3xl font-[Orbitron] text-white tracking-[0.4em] text-center">
+          <h2 className={`${conthrax} text-2xl md:text-3xl text-white tracking-[0.4em] text-center uppercase`}>
             EMBARK ON THE <span className="text-cyan-400">MISSION</span>
           </h2>
           <motion.a
             href="https://kiit.ac.in/research"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-14 py-5 bg-transparent border border-cyan-400 text-cyan-400 font-[Orbitron] uppercase text-[10px] tracking-[0.5em] rounded-full hover:bg-cyan-400 hover:text-black transition-all shadow-[0_0_30px_rgba(0,247,255,0.25)]"
+            className={`${conthrax} px-14 py-5 bg-transparent border border-cyan-400 text-cyan-400 uppercase text-[10px] tracking-[0.5em] rounded-full hover:bg-cyan-400 hover:text-black transition-all shadow-[0_0_30px_rgba(0,247,255,0.25)]`}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -160,7 +162,7 @@ export default function BenefitsPage() {
 
       {/* FOOTER SYSTEM STATUS */}
       <div className="pb-20 opacity-30">
-         <p className="text-[10px] font-[Orbitron] tracking-[2em] text-cyan-500 uppercase">
+         <p className={`${conthrax} text-[10px] tracking-[2em] text-cyan-500 uppercase`}>
            Elite • Research • Intelligence
          </p>
       </div>

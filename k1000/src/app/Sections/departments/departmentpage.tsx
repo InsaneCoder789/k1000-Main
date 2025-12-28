@@ -11,6 +11,8 @@ import {
   FaDumbbell,
 } from "react-icons/fa";
 
+const conthrax = "font-['Conthrax',_sans-serif]";
+
 const categories = [
   {
     title: "Engineering & Technology",
@@ -87,7 +89,7 @@ export default function DepartmentsPage() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <div ref={ref} className="w-full min-h-screen text-white flex flex-col items-center space-y-24 py-10 px-6 font-sans">
+    <div ref={ref} className="w-full min-h-screen text-white flex flex-col items-center space-y-24 py-10 px-6 font-sans bg-black">
       
       {/* ─── HERO HEADER ─── */}
       <section className="relative w-full max-w-7xl h-[40vh] rounded-[40px] overflow-hidden border border-cyan-500/20 shadow-2xl">
@@ -101,11 +103,11 @@ export default function DepartmentsPage() {
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-7xl font-[Orbitron] tracking-[0.2em] uppercase"
+            className={`${conthrax} text-4xl md:text-7xl tracking-[0.2em] uppercase text-white`}
           >
             KIIT <span className="text-cyan-400 drop-shadow-[0_0_15px_#00f7ff]">Departments</span>
           </motion.h1>
-          <p className="text-white/40 mt-4 font-[Orbitron] tracking-[0.5em] text-xs">Academic Infrastructure Protocol</p>
+          <p className="text-white/40 mt-4 font-[Orbitron] tracking-[0.5em] text-xs uppercase">Academic Infrastructure Protocol</p>
         </div>
       </section>
 
@@ -125,16 +127,16 @@ export default function DepartmentsPage() {
                 {category.icon}
               </div>
               <div>
-                <span className="text-[10px] font-[Orbitron] text-cyan-500/50 tracking-[0.4em] uppercase">
+                <span className={`${conthrax} text-[9px] text-cyan-500/50 tracking-[0.4em] uppercase`}>
                   {category.id}
                 </span>
-                <h3 className="text-2xl md:text-3xl font-[Orbitron] text-white tracking-widest uppercase">
+                <h3 className={`${conthrax} text-2xl md:text-3xl text-white tracking-widest uppercase mt-1`}>
                   {category.title}
                 </h3>
               </div>
             </div>
 
-            {/* Schools List - Upgraded to a compact grid */}
+            {/* Schools List */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {category.schools.map((school, i) => (
                 <motion.div
@@ -158,7 +160,7 @@ export default function DepartmentsPage() {
 
       {/* ─── FOOTER BRANDING ─── */}
       <div className="pb-20 opacity-20">
-         <p className="text-[10px] font-[Orbitron] tracking-[1.5em] text-cyan-500 uppercase">
+         <p className={`${conthrax} text-[10px] tracking-[1.5em] text-cyan-500 uppercase text-center`}>
            Academic Excellence • K-1000 Verified
          </p>
       </div>

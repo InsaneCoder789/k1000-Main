@@ -13,6 +13,8 @@ const iconMap: Record<string, any> = {
   Rocket, FileText, BookOpen, Star, Award, Globe, Lightbulb, Users,
 };
 
+const conthrax = "font-['Conthrax',_sans-serif]";
+
 export default function HomePage() {
   const stats = [
     { number: "100+", label: "Projects" },
@@ -27,7 +29,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="flex flex-col items-center w-full space-y-32 font-sans">
+    <div className="flex flex-col items-center w-full space-y-32 font-sans bg-black text-white">
       
       {/* ─── SECTION 1: HERO (Text Over Image) ─── */}
       <motion.section 
@@ -48,7 +50,7 @@ export default function HomePage() {
               System Initialization: KIIT Elite Engineering
             </motion.p>
             
-            <h1 className="text-5xl md:text-7xl font-[Orbitron] tracking-widest text-white mb-6">
+            <h1 className={`${conthrax} text-5xl md:text-7xl tracking-widest text-white mb-6`}>
               JOIN <span className="text-cyan-400 drop-shadow-[0_0_15px_#00f7ff]">K-1000</span>
             </h1>
 
@@ -58,10 +60,10 @@ export default function HomePage() {
             </p>
 
             <div className="flex gap-6">
-              <Link href="/Sections/apply" className="px-10 py-4 bg-cyan-500 text-black font-[Orbitron] uppercase text-[10px] tracking-widest rounded-full hover:bg-white transition-all shadow-[0_0_20px_rgba(0,247,255,0.5)]">
+              <Link href="/Sections/apply" className={`${conthrax} px-10 py-4 bg-cyan-500 text-black uppercase text-[10px] tracking-widest rounded-full hover:bg-white transition-all shadow-[0_0_20px_rgba(0,247,255,0.5)]`}>
                 Apply Now
               </Link>
-              <Link href="/Sections/about" className="px-10 py-4 border border-cyan-500/50 text-cyan-400 font-[Orbitron] uppercase text-[10px] tracking-widest rounded-full hover:bg-cyan-500/10 transition-all">
+              <Link href="/Sections/about" className={`${conthrax} px-10 py-4 border border-cyan-500/50 text-cyan-400 uppercase text-[10px] tracking-widest rounded-full hover:bg-cyan-500/10 transition-all`}>
                 Learn More
               </Link>
             </div>
@@ -75,7 +77,7 @@ export default function HomePage() {
               <span className="text-4xl font-[Orbitron] text-white group-hover:text-cyan-400 transition-colors">
                 {stat.number}
               </span>
-              <span className="text-[10px] uppercase tracking-[0.3em] text-white/40 font-bold font-[Orbitron]">
+              <span className={`${conthrax} text-[9px] uppercase tracking-[0.3em] text-white/40 font-bold`}>
                 {stat.label}
               </span>
             </div>
@@ -100,7 +102,7 @@ export default function HomePage() {
         </div>
 
         <div className="space-y-8">
-          <h2 className="text-4xl font-[Orbitron] tracking-[0.2em] text-white uppercase">
+          <h2 className={`${conthrax} text-4xl tracking-[0.2em] text-white uppercase`}>
             ABOUT <span className="text-cyan-400">K-1000</span>
           </h2>
           <p className="text-lg text-white/70 leading-relaxed tracking-wide">
@@ -110,7 +112,7 @@ export default function HomePage() {
             {["Hands-on projects", "Research & Patents", "Industry Pipelines", "Technical Mastery"].map((text, i) => (
               <div key={i} className="flex items-center gap-3">
                 <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full" />
-                <span className="text-xs font-[Orbitron] text-white/60 uppercase tracking-widest">{text}</span>
+                <span className={`${conthrax} text-[10px] text-white/60 uppercase tracking-widest`}>{text}</span>
               </div>
             ))}
           </div>
@@ -124,7 +126,7 @@ export default function HomePage() {
         whileInView="visible" 
         className="w-full max-w-6xl pb-20"
       >
-        <h2 className="text-4xl font-[Orbitron] text-center tracking-[0.25em] text-cyan-400 mb-16 uppercase">
+        <h2 className={`${conthrax} text-4xl text-center tracking-[0.25em] text-cyan-400 mb-16 uppercase`}>
           Benefits & Perks
         </h2>
 
@@ -140,7 +142,7 @@ export default function HomePage() {
                 <div className="w-12 h-12 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center mb-6">
                   <Icon className="w-6 h-6 text-cyan-400 group-hover:scale-110 transition-transform" />
                 </div>
-                <h3 className="text-lg font-[Orbitron] text-white mb-3 tracking-wider">{b.title}</h3>
+                <h3 className={`${conthrax} text-lg text-white mb-3 tracking-wider`}>{b.title}</h3>
                 <p className="text-sm text-white/50 leading-relaxed font-light">{b.description}</p>
               </motion.div>
             );
@@ -149,7 +151,7 @@ export default function HomePage() {
 
         {/* Closing Motto */}
         <div className="mt-32 text-center">
-            <p className="text-[12px] font-[Orbitron] tracking-[0.6em] text-cyan-500/50 uppercase">
+            <p className={`${conthrax} text-[12px] tracking-[0.6em] text-cyan-500/50 uppercase`}>
                 Train • Transform • Transcend
             </p>
         </div>
