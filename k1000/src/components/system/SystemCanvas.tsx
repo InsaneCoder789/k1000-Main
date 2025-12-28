@@ -81,15 +81,32 @@ export default function SystemCanvas() {
           
            <nav className="flex gap-8 px-12 py-4 rounded-full border border-[#00f7ff]/40 bg-black/60 backdrop-blur-xl shadow-[0_0_40px_rgba(0,247,255,0.15)] relative pointer-events-auto">
                <div className="absolute top-0 left-16 right-16 h-[1.5px] bg-[#00f7ff] shadow-[0_0_15px_#00f7ff]" />
-               {NAV_ITEMS.map((nav) => (
-                   <button 
-                    key={nav} 
-                    onClick={() => setOpenPanel(nav.toLowerCase())}
-                    className="text-[8.5px] uppercase tracking-[0.35em] font-bold text-white/60 hover:text-[#00f7ff] transition-all whitespace-nowrap"
-                   >
-                       {nav}
-                   </button>
-               ))}
+               {NAV_ITEMS.map((nav) => {
+                   // Active only if openPanel exists and matches this nav item
+                   const isActive = openPanel === nav.toLowerCase();
+                   return (
+                       <button 
+                        key={nav} 
+                        onClick={() => setOpenPanel(nav.toLowerCase())}
+                        className={`relative text-[8.5px] uppercase tracking-[0.35em] font-bold transition-all whitespace-nowrap px-2 py-1
+                          ${isActive ? "text-[#00f7ff] drop-shadow-[0_0_8px_#00f7ff]" : "text-white/60 hover:text-[#00f7ff]"}`}
+                       >
+                           {nav}
+                           <AnimatePresence>
+                             {isActive && (
+                               <motion.div 
+                                 layoutId="nav-glow"
+                                 initial={{ opacity: 0 }}
+                                 animate={{ opacity: 1 }}
+                                 exit={{ opacity: 0 }}
+                                 className="absolute -top-[17px] left-0 right-0 h-[2px] bg-[#00f7ff] shadow-[0_0_10px_#00f7ff]"
+                                 transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                               />
+                             )}
+                           </AnimatePresence>
+                       </button>
+                   );
+               })}
            </nav>
 
            <div className="absolute right-12 top-1/2 -translate-y-1/2">
@@ -155,12 +172,11 @@ export default function SystemCanvas() {
                           {[...Array(10)].map((_,i)=><div key={i} className={`w-7 h-[2.5px] ${isCpuHovered ? 'bg-white shadow-[0_0_10px_#ffffff]' : 'bg-[#00f7ff] shadow-[0_0_15px_#00f7ff]'}`} />)}
                         </div>
                         <div className="absolute -right-3.5 top-[25%] bottom-[25%] flex flex-col justify-between py-1.5">
-                          {[...Array(10)].map((_,i)=><div key={i} className={`w-7 h-[2.5px] ${isCpuHovered ? 'bg-white shadow-[0_0_10px_#ffffff]' : 'bg-[#00f7ff] shadow-[0_0_15px_#00f7ff]'}`} />)}
+                          {[...Array(10)].map((_,i)=><div key={i} className={`w-7 h-[2.5px] ${isCpuHovered ? 'bg-white shadow-[0_0_10px_#ffffff]' : 'bg-[#00f7ff] shadow({0_0_15px_#00f7ff)'}`} />)}
                         </div>
                     </div>
                   </button>
               </motion.div>
-              {/* TAGLINE UPDATED TO WHITE */}
               <div className="mt-16 text-[10px] tracking-[1.1em] uppercase font-bold text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]">
                 Train • Transform • Transcend
               </div>

@@ -15,7 +15,7 @@ const pageMap: Record<string, any> = {
   benefits: dynamic(() => import("@/app/Sections/benefits/BenefitsSection")),
   branches: dynamic(() => import("@/app/Sections/branches/branchpage")),
   departments: dynamic(() => import("@/app/Sections/departments/departmentpage")),
-  events: dynamic(() => import("@/app/Sections/events/page")),
+  events: dynamic(() => import("@/app/Sections/events/eventspage")),
   apply: dynamic(() => import("@/app/Sections/apply/applypage")),
   contact: dynamic(() => import("@/app/Sections/contact/contactpage")),
 };
