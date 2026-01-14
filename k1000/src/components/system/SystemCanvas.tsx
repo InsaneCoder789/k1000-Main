@@ -38,7 +38,6 @@ export default function SystemCanvas() {
   
   const text = "SYSTEM ONLINE • NEURAL LINK ESTABLISHED • PROTOCOL v4.5";
 
-  // Data Merging: Find domain data AND the specific icon from the local nodes
   const rawDomain = domains.find(d => d.key === activeDomainKey);
   const activeNode = [...LEFT_NODES, ...RIGHT_NODES].find(n => n.key === activeDomainKey);
   const activeDomain = rawDomain ? { ...rawDomain, icon: activeNode?.icon } : null;
@@ -73,46 +72,40 @@ export default function SystemCanvas() {
       <AnimatePresence>
         {!activeDomainKey && (
           <>
-            {/* 2. OVERSIZED NAVBAR & LOGOS */}
-            <motion.div initial={{ y: -50, opacity: 0 }} animate={{ y: 0, opacity: 1 }} className="absolute top-12 left-16 z-[110]">
-              <img src="/k1000-logo.png" className="h-14 w-auto brightness-200 drop-shadow-[0_0_15px_#00f7ff]" alt="K-1000" />
-            </motion.div>
+            {/* 2. HEADER GRID - Prevents Overlapping */}
+            <div className="absolute top-10 left-0 w-full px-16 grid grid-cols-[1fr_auto_1fr] items-center z-[110]">
+              <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}>
+                <img src="/k1000-logo.png" className="h-12 w-auto brightness-200 drop-shadow-[0_0_15px_#00f7ff]" alt="K-1000" />
+              </motion.div>
 
-            <motion.div initial={{ y: -50, opacity: 0 }} animate={{ y: 0, opacity: 1 }} className="absolute top-12 right-16 z-[110]">
-              <img src="/kiit-logo.png" className="h-16 w-auto brightness-110 drop-shadow-[0_0_10px_rgba(255,255,255,0.1)]" alt="KIIT" />
-            </motion.div>
+              <motion.nav 
+                initial={{ opacity: 0, y: -20 }} 
+                animate={{ opacity: 1, y: 0 }} 
+                className="flex gap-5 px-10 py-4 rounded-full border border-[#00f7ff]/30 bg-black/80 backdrop-blur-2xl shadow-[0_0_40px_rgba(0,247,255,0.15)]"
+              >
+                {/* Glow removed from here */}
+                {NAV_ITEMS.map((nav) => {
+                  const isActive = openPanel === nav.toLowerCase();
+                  return (
+                    <button 
+                      key={nav} 
+                      onClick={() => setOpenPanel(nav.toLowerCase())} 
+                      className="relative text-[9px] uppercase tracking-[0.3em] font-black transition-all"
+                    >
+                      <span className={isActive ? "text-[#00f7ff] drop-shadow-[0_0_8px_#00f7ff]" : "text-white/60 hover:text-[#00f7ff]"}>
+                        {nav}
+                      </span>
+                    </button>
+                  );
+                })}
+              </motion.nav>
 
-            <motion.nav 
-              initial={{ opacity: 0, y: -20 }} 
-              animate={{ opacity: 1, y: 0 }} 
-              className="absolute top-10 left-1/2 -translate-x-1/2 flex gap-10 px-16 py-6 rounded-full border-2 border-[#00f7ff]/40 bg-black/80 backdrop-blur-2xl z-[110] shadow-[0_0_50px_rgba(0,247,255,0.2)]"
-            >
-              <div className="absolute top-0 left-20 right-20 h-[2px] bg-[#00f7ff] shadow-[0_0_15px_#00f7ff]" />
-              {NAV_ITEMS.map((nav) => {
-                const isActive = openPanel === nav.toLowerCase();
-                return (
-                  <button 
-                    key={nav} 
-                    onClick={() => setOpenPanel(nav.toLowerCase())} 
-                    className="relative text-[10px] uppercase tracking-[0.4em] font-black transition-all"
-                  >
-                    <span className={isActive ? "text-[#00f7ff] drop-shadow-[0_0_8px_#00f7ff]" : "text-white/60 hover:text-[#00f7ff]"}>
-                      {nav}
-                    </span>
-                    {isActive && (
-                      <motion.div 
-                        layoutId="nav-active-glow"
-                        className="absolute -bottom-2 left-0 right-0 h-[2px] bg-[#00f7ff] shadow-[0_0_10px_#00f7ff]"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                      />
-                    )}
-                  </button>
-                );
-              })}
-            </motion.nav>
+              <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="flex justify-end">
+                <img src="/kiit-logo.png" className="h-14 w-auto brightness-110 opacity-80" alt="KIIT" />
+              </motion.div>
+            </div>
 
-            {/* 3. CENTER SYSTEM MODULE */}
+            {/* 3. CENTER SYSTEM MODULE - Slightly Reduced Frame */}
             <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 w-full h-full opacity-30 pointer-events-none">
               {[...LEFT_NODES, ...RIGHT_NODES].map((node) => (
                 <motion.line 
@@ -121,26 +114,26 @@ export default function SystemCanvas() {
                   x2={node.x} y2={node.y} 
                   stroke="#00f7ff" 
                   strokeWidth="0.12" 
-                  animate={{ opacity: hoveredNode === node.key ? 0.9 : 0.25, strokeWidth: hoveredNode === node.key ? 0.3 : 0.12 }} 
+                  animate={{ opacity: hoveredNode === node.key ? 0.9 : 0.25 }} 
                 />
               ))}
             </svg>
 
             <div className="absolute top-[50%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 flex flex-col items-center">
               <button onMouseEnter={() => setIsCoreHovered(true)} onMouseLeave={() => setIsCoreHovered(false)} onClick={() => setOpenPanel("home")} className="relative group pointer-events-auto">
-                <div className={`w-[320px] h-[460px] bg-[#020205] border-[2px] rounded-[40px] transition-all duration-500 ${isCoreHovered ? 'border-white shadow-[0_0_80px_rgba(255,255,255,0.2)] scale-[1.02]' : 'border-cyan-500/30'}`}>
-                  <div className="h-10 border-b border-white/10 flex items-center px-6 justify-between text-cyan-400">
+                <div className={`w-[300px] h-[420px] bg-[#020205] border-[2px] rounded-[36px] transition-all duration-500 flex flex-col overflow-hidden ${isCoreHovered ? 'border-white shadow-[0_0_80px_rgba(255,255,255,0.2)] scale-[1.02]' : 'border-cyan-500/30'}`}>
+                  <div className="h-9 border-b border-white/10 flex items-center px-6 justify-between text-cyan-400 shrink-0">
                     <Activity size={12} className="animate-pulse" />
-                    <span className="text-[7px] tracking-[0.5em] font-black">CORE_LINK_STABLE</span>
+                    <span className="text-[7px] tracking-[0.5em] font-black uppercase">Core_Neural_Link</span>
                   </div>
-                  <div className="flex flex-col items-center justify-center h-full relative">
-                    <motion.div animate={{ opacity: [0.1, 0.2, 0.1] }} transition={{ duration: 4, repeat: Infinity }} className="absolute w-40 h-40 bg-cyan-500 blur-[90px] rounded-full" />
-                    <img src="/k1000-small.png" className="w-40 h-auto brightness-150 relative z-10" />
-                    <div className="mt-8 text-[11px] tracking-[0.8em] font-black text-cyan-500/60 uppercase">System_v4.5</div>
+                  <div className="flex-1 flex flex-col items-center justify-center relative">
+                    <motion.div animate={{ opacity: [0.1, 0.2, 0.1] }} transition={{ duration: 4, repeat: Infinity }} className="absolute w-36 h-36 bg-cyan-500 blur-[80px] rounded-full" />
+                    <img src="/k1000-small.png" className="w-36 h-auto brightness-150 relative z-10" />
+                    <div className="mt-8 text-[10px] tracking-[0.7em] font-black text-cyan-500/60 uppercase">System_v4.5</div>
                   </div>
                 </div>
               </button>
-              <div className="mt-30 text-[11px] tracking-[1.6em] uppercase font-black text-white drop-shadow-[0_0_15px_white]">Train • Transform • Transcend</div>
+              <div className="mt-10 text-[10px] tracking-[1.4em] uppercase font-black text-white/80 drop-shadow-[0_0_15px_white]">Train • Transform • Transcend</div>
             </div>
 
             {/* 4. DOMAIN NODES */}
@@ -153,12 +146,12 @@ export default function SystemCanvas() {
                   className={`absolute -translate-y-1/2 flex items-center pointer-events-auto transition-all duration-300
                     ${LEFT_NODES.includes(node) ? "-translate-x-full flex-row" : "flex-row-reverse"}`}
                 >
-                  <div className={`relative px-10 py-6 border-[2px] transition-all duration-500 min-w-[300px] flex items-center gap-6 rounded-sm backdrop-blur-md
+                  <div className={`relative px-8 py-5 border-[2px] transition-all duration-500 min-w-[280px] flex items-center gap-5 rounded-sm backdrop-blur-md
                     ${hoveredNode === node.key ? 'bg-white text-black border-white shadow-[0_0_30px_white]' : 'bg-black/80 border-cyan-500/20 text-cyan-400'}`}>
-                    <div className="p-1">{node.icon}</div>
-                    <span className="text-[11px] uppercase tracking-[0.3em] font-black">{node.label}</span>
+                    <div className="shrink-0">{node.icon}</div>
+                    <span className="text-[10px] uppercase tracking-[0.3em] font-black">{node.label}</span>
                   </div>
-                  <div className={`w-12 h-[2px] ${hoveredNode === node.key ? 'bg-white' : 'bg-cyan-500/20'}`} />
+                  <div className={`w-10 h-[2px] ${hoveredNode === node.key ? 'bg-white' : 'bg-cyan-500/20'}`} />
                   <div className="w-4 h-4 rounded-full border border-cyan-500/40 flex items-center justify-center bg-[#010103]">
                     <div className={`w-2 h-2 rounded-full ${hoveredNode === node.key ? 'bg-white shadow-[0_0_10px_white]' : 'bg-cyan-500/20'}`} />
                   </div>
@@ -166,31 +159,15 @@ export default function SystemCanvas() {
             ))}
 
             {/* 5. FLOATING TELEMETRY */}
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="absolute bottom-16 left-16 flex items-end gap-2">
-              <div className="flex items-end gap-[3px] h-10 border-l border-white/10 pl-4 mb-1">
-                {[...Array(14)].map((_, i) => (
-                  <motion.div key={i} animate={{ height: [5, 25, 5] }} transition={{ duration: 0.7, repeat: Infinity, delay: i * 0.08 }} className="w-[3px] bg-cyan-500 shadow-[0_0_10px_cyan]" />
-                ))}
-              </div>
-              <div className="ml-4 flex flex-col">
-                <div className="flex items-center gap-2 mb-1 opacity-40"><Fingerprint size={12}/><span className="text-[7px] tracking-[0.5em] uppercase font-bold">Bio_Verified</span></div>
-                <span className="text-[12px] tracking-[0.4em] text-white font-black drop-shadow-[0_0_8px_cyan]">{typed}</span>
-              </div>
-            </motion.div>
+            <div className="absolute bottom-16 left-16">
+               <span className="text-[11px] tracking-[0.4em] text-white/40 font-black">{typed}</span>
+            </div>
 
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="absolute bottom-16 right-16 text-right">
-              <div className="flex items-center justify-end gap-3 text-[9px] tracking-[0.4em] text-cyan-500/50 mb-3 uppercase font-black">
-                <BarChart3 size={14}/> Diagnostic_Stream
-              </div>
-              {logs.map((log, i) => (
-                <div key={i} className="text-[10px] text-white/30 font-mono tracking-widest uppercase mb-1">
-                  <span className="opacity-20 mr-2">[{new Date().getSeconds() + i}]</span> {log}
-                </div>
-              ))}
-              <div className="mt-4 text-[20px] font-mono text-cyan-400 font-black tracking-tighter drop-shadow-[0_0_12px_cyan]">
+            <div className="absolute bottom-16 right-16 text-right">
+              <div className="text-[18px] font-mono text-cyan-400 font-black tracking-tighter opacity-60">
                 {new Date().toLocaleTimeString([], { hour12: false })}
               </div>
-            </motion.div>
+            </div>
           </>
         )}
       </AnimatePresence>

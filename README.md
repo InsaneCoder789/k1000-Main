@@ -58,7 +58,7 @@ To initialize the interface locally, execute the following protocol:
 
 # Clone the repository
 ```bash
-git clone [https://github.com/your-username/k1000-experimental.git](https://github.com/your-username/k1000-experimental.git)
+git clone [https://github.com/your-username/k1000-experimental.git](https://github.com/your-username/k1000-main.git)
 ```
 # Install dependencies
 ```bash
