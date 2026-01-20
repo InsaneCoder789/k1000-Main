@@ -60,10 +60,10 @@ const benefits = [
 
 export default function BenefitsPage() {
   return (
-    <div className="w-full min-h-screen text-white flex flex-col items-center space-y-32 py-10 px-6 font-sans bg-black">
+    <div className="w-full min-h-screen text-white flex flex-col items-center space-y-20 md:space-y-32 py-6 md:py-10 px-4 md:px-6 font-sans bg-black overflow-x-hidden">
       
       {/* ─── HERO SECTION ─── */}
-      <section className="relative w-full max-w-7xl h-[55vh] rounded-[40px] overflow-hidden border border-cyan-500/20 shadow-2xl">
+      <section className="relative w-full max-w-7xl h-[40vh] md:h-[55vh] rounded-[24px] md:rounded-[40px] overflow-hidden border border-cyan-500/20 shadow-2xl">
         <img 
           src={images[0]} 
           className="absolute inset-0 size-full object-cover brightness-[0.4]" 
@@ -71,11 +71,11 @@ export default function BenefitsPage() {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
         
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-10">
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 md:px-10">
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className={`${conthrax} text-5xl md:text-7xl tracking-[0.2em] text-white uppercase`}
+            className={`${conthrax} text-3xl sm:text-4xl md:text-7xl tracking-[0.1em] md:tracking-[0.2em] text-white uppercase leading-tight`}
           >
             JOIN <span className="text-cyan-400 drop-shadow-[0_0_15px_#00f7ff]">K-1000</span>
           </motion.h1>
@@ -83,7 +83,7 @@ export default function BenefitsPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
-            className="text-white/60 mt-8 max-w-4xl text-lg md:text-xl font-light leading-relaxed font-[Orbitron] tracking-[0.4em]"
+            className="text-white/60 mt-4 md:mt-8 max-w-4xl text-sm md:text-xl font-light leading-relaxed font-[Orbitron] tracking-[0.2em] md:tracking-[0.4em]"
           >
             TRAIN • COMPETE • PUBLISH
           </motion.p>
@@ -91,11 +91,11 @@ export default function BenefitsPage() {
       </section>
 
       {/* ─── DESCRIPTION BLOCK ─── */}
-      <section className="w-full max-w-4xl text-center space-y-8">
-        <h2 className={`${conthrax} text-3xl md:text-4xl text-white uppercase tracking-tighter`}>
+      <section className="w-full max-w-4xl text-center space-y-6 md:space-y-8 px-2">
+        <h2 className={`${conthrax} text-2xl md:text-4xl text-white uppercase tracking-tighter`}>
           The <span className="text-cyan-400">Ecosystem</span>
         </h2>
-        <p className="text-xl text-white/70 leading-relaxed font-light">
+        <p className="text-base md:text-xl text-white/70 leading-relaxed font-light text-justify md:text-center">
           The K-1000 initiative is more than a program; it's a launchpad. 
           By integrating technical rigor with research excellence, we prepare 
           students for the highest tiers of global industry and academia.
@@ -104,30 +104,28 @@ export default function BenefitsPage() {
 
       {/* ─── BENEFITS GRID ─── */}
       <section className="w-full max-w-7xl">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
           {benefits.map((benefit, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="p-10 rounded-[40px] bg-white/[0.03] border border-white/10 hover:border-cyan-400/50 transition-all group shadow-xl flex flex-col items-start text-left relative overflow-hidden"
+              transition={{ delay: index * 0.05 }}
+              className="p-8 md:p-10 rounded-[30px] md:rounded-[40px] bg-white/[0.03] border border-white/10 hover:border-cyan-400/50 transition-all group shadow-xl flex flex-col items-start text-left relative overflow-hidden"
             >
-              {/* Decorative Corner Glow */}
               <div className="absolute -top-10 -right-10 w-24 h-24 bg-cyan-500/10 blur-3xl group-hover:bg-cyan-500/20 transition-all" />
               
-              <h3 className={`${conthrax} text-xl text-white mb-3 tracking-wide group-hover:text-cyan-400 transition-colors`}>
+              <h3 className={`${conthrax} text-lg md:text-xl text-white mb-3 tracking-wide group-hover:text-cyan-400 transition-colors`}>
                 {benefit.title}
               </h3>
               
-              <p className="text-white/60 text-sm leading-relaxed font-light mb-6">
+              <p className="text-white/60 text-xs md:text-sm leading-relaxed font-light mb-6">
                 {benefit.desc}
               </p>
 
-              {/* Extra Detail Badge */}
-              <div className="mt-auto pt-6 border-t border-white/10 w-full">
-                <p className={`${conthrax} text-[9px] text-cyan-500/80 uppercase tracking-widest`}>
+              <div className="mt-auto pt-4 md:pt-6 border-t border-white/10 w-full">
+                <p className={`${conthrax} text-[8px] md:text-[9px] text-cyan-500/80 uppercase tracking-widest`}>
                   {benefit.detail}
                 </p>
               </div>
@@ -137,21 +135,21 @@ export default function BenefitsPage() {
       </section>
 
       {/* ─── CALL TO ACTION SECTION ─── */}
-      <section className="w-full max-w-7xl relative h-[45vh] rounded-[40px] overflow-hidden border border-white/5 group">
+      <section className="w-full max-w-7xl relative h-[35vh] md:h-[45vh] rounded-[24px] md:rounded-[40px] overflow-hidden border border-white/5 group">
         <img
           src={images[1]}
           alt="Research Development"
           className="size-full object-cover brightness-50 group-hover:scale-105 transition-transform duration-[2.5s]"
         />
-        <div className="absolute inset-0 flex flex-col items-center justify-center space-y-8 bg-black/40 backdrop-blur-[1px]">
-          <h2 className={`${conthrax} text-2xl md:text-3xl text-white tracking-[0.4em] text-center uppercase`}>
+        <div className="absolute inset-0 flex flex-col items-center justify-center space-y-6 md:space-y-8 bg-black/40 backdrop-blur-[1px] px-4">
+          <h2 className={`${conthrax} text-lg md:text-3xl text-white tracking-[0.2em] md:tracking-[0.4em] text-center uppercase`}>
             EMBARK ON THE <span className="text-cyan-400">MISSION</span>
           </h2>
           <motion.a
             href="https://kiit.ac.in/research"
             target="_blank"
             rel="noopener noreferrer"
-            className={`${conthrax} px-14 py-5 bg-transparent border border-cyan-400 text-cyan-400 uppercase text-[10px] tracking-[0.5em] rounded-full hover:bg-cyan-400 hover:text-black transition-all shadow-[0_0_30px_rgba(0,247,255,0.25)]`}
+            className={`${conthrax} px-8 md:px-14 py-4 md:py-5 bg-transparent border border-cyan-400 text-cyan-400 uppercase text-[8px] md:text-[10px] tracking-[0.3em] md:tracking-[0.5em] rounded-full hover:bg-cyan-400 hover:text-black transition-all shadow-[0_0_30px_rgba(0,247,255,0.25)] text-center`}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -161,8 +159,8 @@ export default function BenefitsPage() {
       </section>
 
       {/* FOOTER SYSTEM STATUS */}
-      <div className="pb-20 opacity-30">
-         <p className={`${conthrax} text-[10px] tracking-[2em] text-cyan-500 uppercase`}>
+      <div className="pb-10 md:pb-20 opacity-30 text-center">
+         <p className={`${conthrax} text-[7px] md:text-[10px] tracking-[1em] md:tracking-[2em] text-cyan-500 uppercase inline-block`}>
            Elite • Research • Intelligence
          </p>
       </div>

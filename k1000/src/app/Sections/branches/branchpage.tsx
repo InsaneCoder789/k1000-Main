@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 
 const images = [
@@ -49,109 +49,90 @@ const branches = [
 ];
 
 export default function BranchesPage() {
+  // Reset scroll to top on mount
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
-    <div className="w-full min-h-screen text-white flex flex-col items-center space-y-32 py-10 px-6 font-sans bg-black">
+    <div className="w-full min-h-screen text-white flex flex-col items-center space-y-20 md:space-y-32 py-6 md:py-10 px-4 md:px-6 bg-black overflow-x-hidden">
       
       {/* ─── HERO SECTION ─── */}
-      <section className="relative w-full max-w-7xl h-[50vh] rounded-[40px] overflow-hidden border border-cyan-500/20 shadow-[0_0_50px_rgba(0,247,255,0.1)]">
-        <img 
+      <section className="relative w-full max-w-7xl h-[40vh] md:h-[50vh] rounded-[24px] md:rounded-[40px] overflow-hidden border border-cyan-500/20 shadow-[0_0_50px_rgba(0,247,255,0.1)]">
+        <motion.img 
+          initial={{ scale: 1.1, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 1.5 }}
           src={images[0]} 
           className="absolute inset-0 size-full object-cover brightness-[0.35]" 
           alt="KIIT Library" 
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
         
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-10">
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 md:px-10">
           <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            className={`${conthrax} text-5xl md:text-7xl tracking-[0.2em] text-white uppercase`}
+            className={`${conthrax} text-3xl sm:text-4xl md:text-7xl tracking-[0.1em] md:tracking-[0.2em] text-white uppercase leading-tight`}
           >
             Our <span className="text-cyan-400 drop-shadow-[0_0_15px_#00f7ff]">Branches</span>
           </motion.h1>
           <motion.div 
             initial={{ width: 0 }}
-            animate={{ width: "200px" }}
-            className="h-1 bg-cyan-500 mt-6 shadow-[0_0_10px_#00f7ff]"
+            animate={{ width: "120px" }}
+            className="h-1 bg-cyan-500 mt-4 md:mt-6 shadow-[0_0_10px_#00f7ff] md:w-[200px]"
           />
         </div>
       </section>
 
       {/* ─── INTRO DESCRIPTION ─── */}
-      <section className="w-full max-w-4xl text-center">
-        <p className="text-xl text-white/70 leading-relaxed font-light font-[Orbitron] tracking-wide">
-          Explore the strategic divisions of <span className="text-white border-b border-cyan-500/50">K-1000</span>. 
+      <section className="w-full max-w-4xl text-center px-2">
+        <p className="text-base md:text-xl text-white/70 leading-relaxed font-light font-sans tracking-wide">
+          Explore the strategic divisions of <span className={`${conthrax} text-white text-sm md:text-lg`}>K-1000</span>. 
           Each wing is a specialized ecosystem designed to accelerate your growth 
-          across specific domains of technology, research, and leadership.
+          across specific domains.
         </p>
       </section>
 
       {/* ─── BRANCHES GRID ─── */}
-      <section className="w-full max-w-7xl px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+      <section className="w-full max-w-7xl">
+        <motion.div 
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          variants={{
+            hidden: { opacity: 0 },
+            show: { opacity: 1, transition: { staggerChildren: 0.1 } }
+          }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10"
+        >
           {branches.map((branch, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="group relative p-10 rounded-[45px] bg-white/[0.02] border border-white/10 hover:border-cyan-500/40 transition-all duration-500 flex flex-col h-full shadow-2xl overflow-hidden"
+              variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}
+              whileHover={{ y: -5 }}
+              className="group relative p-8 md:p-10 rounded-[30px] md:rounded-[45px] bg-white/[0.02] border border-white/10 hover:border-cyan-500/40 transition-all flex flex-col h-full shadow-2xl overflow-hidden"
             >
-              {/* Top Unit Tag */}
-              <span className={`${conthrax} text-[9px] text-cyan-500/60 tracking-[0.3em] uppercase mb-6 block`}>
+              <span className={`${conthrax} text-[8px] md:text-[9px] text-cyan-500/60 tracking-[0.2em] md:tracking-[0.3em] uppercase mb-4 block`}>
                 {branch.tag}
               </span>
-
-              <h3 className={`${conthrax} text-2xl text-white mb-6 group-hover:text-cyan-400 transition-colors tracking-tight`}>
+              <h3 className={`${conthrax} text-xl md:text-2xl text-white mb-4 group-hover:text-cyan-400 transition-colors uppercase`}>
                 {branch.title}
               </h3>
-
-              <p className="text-white/50 text-sm leading-relaxed font-light mb-8 flex-grow">
+              <p className="font-sans text-white/50 text-xs md:text-sm leading-relaxed mb-6 flex-grow">
                 {branch.desc}
               </p>
-
-              {/* Bottom Focus Detail */}
-              <div className="pt-6 border-t border-white/5">
-                <p className={`${conthrax} text-[9px] text-white/30 group-hover:text-white/60 transition-colors tracking-widest`}>
+              <div className="pt-4 border-t border-white/5">
+                <p className={`${conthrax} text-[8px] md:text-[9px] text-white/30 group-hover:text-white/60 tracking-widest uppercase`}>
                   {branch.focus}
                 </p>
               </div>
-
-              {/* Decorative Background Glow */}
-              <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-cyan-500/5 blur-[80px] group-hover:bg-cyan-500/10 transition-all" />
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </section>
-
-      {/* ─── CALL TO ACTION ─── */}
-      <section className="w-full max-w-5xl flex flex-col items-center text-center space-y-10">
-        <div className="w-full h-px bg-gradient-to-r from-transparent via-cyan-500/30 to-transparent" />
-        <h2 className={`${conthrax} text-2xl md:text-3xl tracking-[0.2em] uppercase`}>
-          WANT TO LEARN <span className="text-cyan-400">MORE?</span>
-        </h2>
-        <motion.a
-          href="https://kiit.ac.in/research"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="relative px-12 py-4 group"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          <div className="absolute inset-0 border border-cyan-500/50 rounded-full group-hover:border-cyan-400 transition-all shadow-[0_0_15px_rgba(0,247,255,0.2)]" />
-          <span className={`${conthrax} relative text-[10px] tracking-[0.4em] text-cyan-400 group-hover:text-white transition-colors`}>
-            SYSTEM PORTAL
-          </span>
-        </motion.a>
-      </section>
-
-      {/* FOOTER SYSTEM STATUS */}
-      <div className="pb-20">
-         <p className={`${conthrax} text-[10px] tracking-[1.2em] text-white/10 uppercase`}>
-           Integrated Division Protocol • K-1000
-         </p>
-      </div>
+      
+      {/* Footer status... */}
     </div>
   );
 }
